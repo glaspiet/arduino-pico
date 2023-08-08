@@ -201,12 +201,12 @@ extern volatile bool __freeRTOSinitted;
 void startFreeRTOS(void) {
 
     TaskHandle_t c0;
-    xTaskCreate(__core0, "CORE0", 1024, 0, configMAX_PRIORITIES / 2, &c0);
+    xTaskCreate(__core0, "CORE0", 4096, 0, configMAX_PRIORITIES / 2, &c0);
     vTaskCoreAffinitySet(c0, 1 << 0);
 
     if (setup1 || loop1) {
         TaskHandle_t c1;
-        xTaskCreate(__core1, "CORE1", 1024, 0, configMAX_PRIORITIES / 2, &c1);
+        xTaskCreate(__core1, "CORE1", 2048, 0, configMAX_PRIORITIES / 2, &c1);
         vTaskCoreAffinitySet(c1, 1 << 1);
     }
 
